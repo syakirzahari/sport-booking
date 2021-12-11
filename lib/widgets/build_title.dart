@@ -9,7 +9,7 @@ Positioned buildTitle(Size size) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          "Sport Booking",
+          "Sports Booking",
           style: GoogleFonts.poppins(
               fontSize: 30, color: Colors.white, fontWeight: FontWeight.w600),
         ),

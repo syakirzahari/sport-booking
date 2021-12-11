@@ -56,7 +56,7 @@ final pages = [
       body: SizedBox(
         height: 500.0,
         child: Text(
-            'Select your spot on the desire location \ndont worry because we have a list\nfor you',
+            'Select your spot at the desire location \ndont worry because we have a list\nfor you',
             textAlign: TextAlign.center,
             style: _fontDescriptionStyle),
       ),

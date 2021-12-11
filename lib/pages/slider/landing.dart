@@ -30,16 +30,16 @@ final pages = [
       iconColor: Colors.black,
       bubbleBackgroundColor: Colors.black,
       title: Text(
-        'Online Shopping',
+        'Choose Preferred Sport',
         style: _fontHeaderStyle,
       ),
       body: SizedBox(
         height: 500.0,
-        child: Text('You can shopping anytime, anywhere \nthat you want',
+        child: Text('You can choose any sports, \nthat you want',
             textAlign: TextAlign.center, style: _fontDescriptionStyle),
       ),
       mainImage: Image.asset(
-        'assets/images/onBoarding1.gif',
+        'assets/images/landing1.png',
         height: 285.0,
         width: 285.0,
         alignment: Alignment.center,
@@ -50,18 +50,18 @@ final pages = [
       iconColor: Colors.black,
       bubbleBackgroundColor: Colors.black,
       title: Text(
-        'Fresh Grocery',
+        'Book Your Slot',
         style: _fontHeaderStyle,
       ),
       body: SizedBox(
         height: 500.0,
         child: Text(
-            'If you are wondering what to cook today, \ndont worry because we have a list\nfor you',
+            'Select your spot on the desire location \ndont worry because we have a list\nfor you',
             textAlign: TextAlign.center,
             style: _fontDescriptionStyle),
       ),
       mainImage: Image.asset(
-        'assets/images/onBoarding3.gif',
+        'assets/images/landing2.png',
         height: 285.0,
         width: 285.0,
         alignment: Alignment.center,
@@ -73,16 +73,16 @@ final pages = [
       iconColor: Colors.black,
       bubbleBackgroundColor: Colors.black,
       title: Text(
-        'Ship at Your Home',
+        'Ready to Enjoy',
         style: _fontHeaderStyle,
       ),
       body: SizedBox(
         height: 500.0,
-        child: Text('The products you order will be\ndelivered to your address',
+        child: Text('That is it!\nJust enjoy with your friends',
             textAlign: TextAlign.center, style: _fontDescriptionStyle),
       ),
       mainImage: Image.asset(
-        'assets/images/onBoarding2.gif',
+        'assets/images/landing3.png',
         height: 285.0,
         width: 285.0,
         alignment: Alignment.center,
@@ -101,14 +101,14 @@ class _LandingSliderState extends State<LandingSlider> {
       skipText: Text(
         "SKIP",
         style: _fontDescriptionStyle.copyWith(
-            color: const Color(0xFF73AE5B),
+            color: Colors.red[800],
             fontWeight: FontWeight.w800,
             letterSpacing: 1.0),
       ),
       doneText: Text(
         "DONE",
         style: _fontDescriptionStyle.copyWith(
-            color: const Color(0xFF73AE5B),
+            color: Colors.red[800],
             fontWeight: FontWeight.w800,
             letterSpacing: 1.0),
       ),

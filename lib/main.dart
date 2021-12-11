@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sport_booking/pages/login.dart';
+import 'package:sport_booking/pages/slider/landing.dart';
 // import 'package:sport_booking/widgets/navbar.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           primaryColorLight: Colors.white,
           primaryColorBrightness: Brightness.light,
           primaryColor: Colors.white),
-      home: const LoginPage(),
+      home: const LandingSlider(),
     );
   }
 }

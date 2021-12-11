@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sport_booking/pages/login.dart';
 import 'package:sport_booking/pages/slider/SliderWidget/lib/Models/page_view_model.dart';
 import 'package:sport_booking/pages/slider/SliderWidget/lib/intro_views_flutter.dart';
 
@@ -111,7 +113,7 @@ class _LandingSliderState extends State<LandingSlider> {
             letterSpacing: 1.0),
       ),
       onTapDoneButton: () {
-        Navigator.of(context).pop();
+        Get.off(() => const LoginPage());
       },
       onTapSkipButton: () {},
       pageButtonFontFamily: '',

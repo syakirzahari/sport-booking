@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/api/api.dart';
-import 'package:sport_booking/controllers/venueController.dart';
+import 'package:sport_booking/controllers/footballController.dart';
 
 class FootballPage extends StatefulWidget {
   const FootballPage({
@@ -29,7 +29,7 @@ class _FootballPageState extends State<FootballPage> {
 
   @override
   Widget build(BuildContext context) {
-    final fController = Get.put(VenueController());
+    final fController = Get.put(FootballController());
 
     return Scaffold(
       appBar: AppBar(

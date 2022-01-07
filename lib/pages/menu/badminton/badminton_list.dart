@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sport_booking/controllers/badmintonController.dart';
 
 class BadmintonPage extends StatefulWidget {
   const BadmintonPage({Key? key}) : super(key: key);
@@ -11,6 +13,8 @@ class BadmintonPage extends StatefulWidget {
 class _BadmintonPageState extends State<BadmintonPage> {
   @override
   Widget build(BuildContext context) {
+    final bController = Get.put(BadmintonController());
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sport_booking/controllers/badmintonController.dart';
+import 'package:sport_booking/controllers/venueController.dart';
 import 'package:sport_booking/models/sportVenue.dart';
 
-class BadmintonPage extends StatefulWidget {
-  const BadmintonPage({Key? key}) : super(key: key);
+class ExplorePage extends StatefulWidget {
+  const ExplorePage({Key? key}) : super(key: key);
 
   @override
-  _BadmintonPageState createState() => _BadmintonPageState();
+  _ExplorePageState createState() => _ExplorePageState();
 }
 
-class _BadmintonPageState extends State<BadmintonPage> {
+class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
-    final bController = Get.put(BadmintonController());
+    final veController = Get.put(VenueController());
 
     return Scaffold(
         appBar: AppBar(
@@ -22,7 +22,7 @@ class _BadmintonPageState extends State<BadmintonPage> {
             color: Colors.red[800], //change your color here
           ),
           title: Text(
-            'Badminton',
+            'Explore Now',
             style: GoogleFonts.poppins(
                 color: Colors.black, fontWeight: FontWeight.w600),
           ),
@@ -38,14 +38,14 @@ class _BadmintonPageState extends State<BadmintonPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Obx(() {
-                    if (bController.isLoading.value) {
+                    if (veController.isLoading.value) {
                       return Center(
                         child: CircularProgressIndicator(
                           color: Colors.red[800],
                         ),
                       );
                     }
-                    return _buildListView(bController.bad);
+                    return _buildListView(veController.ven);
                   }),
                 ],
               )),
@@ -135,7 +135,7 @@ class _BadmintonPageState extends State<BadmintonPage> {
                                             overflow: TextOverflow.ellipsis,
                                           )),
                                       Text(
-                                        'Badminton Pitch',
+                                        'Futsal Court',
                                         style: GoogleFonts.poppins(
                                             color: Colors.black, fontSize: 12),
                                         overflow: TextOverflow.ellipsis,

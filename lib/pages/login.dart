@@ -282,6 +282,7 @@ class _LoginPageState extends State<LoginPage> {
                 await SharedPreferences.getInstance();
 
             if (value.token != null) {
+              // ignore: avoid_print
               print('token: ' + value.token.toString());
 
               sharedPreferences.setString('token', value.token.toString());

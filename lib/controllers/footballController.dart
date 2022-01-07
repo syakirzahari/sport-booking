@@ -4,8 +4,8 @@ import 'package:sport_booking/models/sportVenue.dart';
 
 class FootballController extends GetxController {
   var isLoading = true.obs;
-  var glossary = <DataSport>[].obs;
-  int glossaryId = 0;
+  var fot = <DataSport>[].obs;
+
   @override
   void onInit() {
     fetchFootball();
@@ -16,7 +16,7 @@ class FootballController extends GetxController {
     isLoading(true);
     try {
       var b = await ApiService.getListFootballVenues();
-      glossary.value = b;
+      fot.value = b;
       update();
     } finally {
       isLoading(false);

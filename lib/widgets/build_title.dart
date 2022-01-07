@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sport_booking/pages/menu/explore.dart';
 
 Positioned buildTitle(Size size) {
   return Positioned(
@@ -21,7 +23,7 @@ Positioned buildTitle(Size size) {
         SizedBox(height: size.height * 0.0075),
         ElevatedButton(
           child: const Text("Explore Now"),
-          onPressed: () {},
+          onPressed: () => Get.to(() => const ExplorePage()),
           style: ElevatedButton.styleFrom(
             primary: Colors.red[800],
             onPrimary: Colors.white,

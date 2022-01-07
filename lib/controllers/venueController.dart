@@ -2,21 +2,21 @@ import 'package:get/get.dart';
 import 'package:sport_booking/api/api.dart';
 import 'package:sport_booking/models/sportVenue.dart';
 
-class FutsalController extends GetxController {
+class VenueController extends GetxController {
   var isLoading = true.obs;
-  var fut = <DataSport>[].obs;
+  var ven = <DataSport>[].obs;
 
   @override
   void onInit() {
-    fetchFutsal();
+    fetchVenue();
     super.onInit();
   }
 
-  void fetchFutsal() async {
+  void fetchVenue() async {
     isLoading(true);
     try {
-      var b = await ApiService.getListFutsalVenues();
-      fut.value = b;
+      var b = await ApiService.getListVenues();
+      ven.value = b;
       update();
     } finally {
       isLoading(false);

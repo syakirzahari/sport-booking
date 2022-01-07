@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sport_booking/pages/login.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/widgets/profile_menu.dart';
 
@@ -87,16 +89,16 @@ displayDeleteDialog() {
     confirmTextColor: Colors.white,
     onCancel: () {},
     onConfirm: () {
-      // _deleteToken();
-      // Get.offAll(() => LoginPage());
+      _deleteToken();
+      Get.offAll(() => const LoginPage());
     },
   );
 }
 
-// void _deleteToken() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
+void _deleteToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
 
-//   prefs.remove("token").then((value) => {
-//         print(['token deleted']),
-//       });
-// }
+  prefs.remove("token").then((value) => {
+        print(['token deleted']),
+      });
+}

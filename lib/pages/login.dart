@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sport_booking/api/api.dart';
+import 'package:sport_booking/models/auth.dart';
 import 'package:sport_booking/pages/forgot_password.dart';
 import 'package:sport_booking/pages/register.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:sport_booking/widgets/navbar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,6 +24,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   bool hidePassword = true;
+  bool _isLoading = false;
+  ApiService apiService = ApiService();
 
   @override
   void initState() {
@@ -28,6 +36,43 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     // DO STUFF
     super.dispose();
+  }
+
+  //Login
+  Future<User> login(String email, String password) async {
+    final response =
+        await http.post(Uri.parse(ApiService.baseUrl + "/login"), body: {
+      "email": email,
+      "password": password,
+    });
+
+    if (response.statusCode == 200) {
+      final detail = json.decode(response.body);
+      print('detail: ' + detail.toString());
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      return User.fromJson(json.decode(response.body));
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+
+      Get.defaultDialog(
+        title: 'Log In Error',
+        middleText: 'Please check your Email Address/Password',
+        textConfirm: "OK",
+        buttonColor: Colors.red,
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.back();
+        },
+      );
+      print(response.body);
+      throw Exception('Failed to load data!');
+    }
   }
 
   @override
@@ -142,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         validator: (usernameValue) {
           if (usernameValue!.isEmpty) {
-            return 'Masukkan ID Pengguna';
+            return 'Enter Email Address';
           }
           // username = usernameValue;
           return null;
@@ -216,7 +261,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         validator: (passwordValue) {
           if (passwordValue!.isEmpty) {
-            return 'Enter Email Address';
+            return 'Enter Password';
           }
           // username = usernameValue;
           return null;
@@ -228,7 +273,39 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLoginBtn() {
     return GestureDetector(
       onTap: () {
-        Get.off(() => const NavBarPage());
+        if (validateAndSave()) {
+          setState(() {
+            _isLoading = true;
+          });
+          login(_controllerEmail.text, _controllerPassword.text)
+              .then((value) async {
+            SharedPreferences sharedPreferences =
+                await SharedPreferences.getInstance();
+
+            if (value.token != null) {
+              print('token: ' + value.token.toString());
+
+              sharedPreferences.setString('token', value.token.toString());
+              sharedPreferences.setString('id', value.user!.id.toString());
+              sharedPreferences.setString('name', value.user!.name.toString());
+              sharedPreferences.setString(
+                  'email', value.user!.email.toString());
+              sharedPreferences.setString(
+                  'phone', value.user!.telephoneNumber.toString());
+
+              Get.off(() => const NavBarPage());
+            } else {
+              setState(() {
+                _isLoading = false;
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Email/Password is incorrect'),
+                ),
+              );
+            }
+          });
+        }
       },
       child: Container(
           height: 50,
@@ -306,5 +383,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  bool validateAndSave() {
+    final form = globalFormKey.currentState!;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
   }
 }

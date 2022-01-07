@@ -1,7 +1,4 @@
 // ignore_for_file: unnecessary_new
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:sport_booking/pages/slider/SliderWidget/lib/Models/page_bubble_view_model.dart';
 

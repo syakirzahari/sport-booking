@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sport_booking/pages/login.dart';
 import 'package:sport_booking/pages/slider/landing.dart';
+import 'package:sport_booking/widgets/navbar.dart';
 // import 'package:sport_booking/widgets/navbar.dart';
 
 void main() {
@@ -34,6 +37,45 @@ class MyApp extends StatelessWidget {
           primaryColorBrightness: Brightness.light,
           primaryColor: Colors.white),
       home: const LandingSlider(),
+    );
+  }
+}
+
+class CheckAuth extends StatefulWidget {
+  const CheckAuth({Key? key}) : super(key: key);
+
+  @override
+  _CheckAuthState createState() => _CheckAuthState();
+}
+
+class _CheckAuthState extends State<CheckAuth> {
+  bool isAuth = false;
+  @override
+  void initState() {
+    _checkIfLoggedIn();
+    super.initState();
+  }
+
+  void _checkIfLoggedIn() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = localStorage.getString('token');
+    if (token != null) {
+      setState(() {
+        isAuth = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget child;
+    if (isAuth) {
+      child = const NavBarPage();
+    } else {
+      child = const LoginPage();
+    }
+    return Scaffold(
+      body: child,
     );
   }
 }

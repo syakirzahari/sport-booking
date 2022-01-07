@@ -6,8 +6,28 @@ import 'package:sport_booking/pages/login.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/widgets/profile_menu.dart';
 
-class BodyProfile extends StatelessWidget {
+class BodyProfile extends StatefulWidget {
   const BodyProfile({Key? key}) : super(key: key);
+  @override
+  BodyProfileState createState() => BodyProfileState();
+}
+
+class BodyProfileState extends State<BodyProfile> {
+  String? id, name;
+
+  @override
+  void initState() {
+    super.initState();
+    _userDetails();
+  }
+
+  void _userDetails() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = (prefs.getString('id'));
+      name = (prefs.getString('name'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +44,7 @@ class BodyProfile extends StatelessWidget {
                   backgroundImage: AssetImage("assets/images/default.png"),
                 ),
                 Text(
-                  'Syakir Zahari',
+                  name.toString(),
                   style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: Colors.black,

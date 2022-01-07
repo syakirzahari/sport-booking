@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/controllers/venueController.dart';
 import 'package:sport_booking/models/sportVenue.dart';
+import 'package:sport_booking/pages/menu/football/football_details.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({Key? key}) : super(key: key);
@@ -71,8 +72,8 @@ class _ExplorePageState extends State<ExplorePage> {
                 List<Media> med = List<Media>.from(bt.media!);
                 return GestureDetector(
                     onTap: () {
-                      // Get.to(() => BaitiDetailsPage(), arguments: [bt]);
-                      // print(med[index]);
+                      Get.to(() => const FootballDetails(),
+                          arguments: [bt, med[0].path.toString()]);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(

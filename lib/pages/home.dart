@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/widgets/body.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  @override
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  String? id, name;
+
+  @override
+  void initState() {
+    super.initState();
+    _userDetails();
+  }
+
+  void _userDetails() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = (prefs.getString('id'));
+      name = (prefs.getString('name'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +40,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.black, fontWeight: FontWeight.w600),
           ),
           Text(
-            'Hi, Syakir!',
+            'Hi, ' + name.toString() + '!',
             style: GoogleFonts.poppins(fontSize: 14, color: Colors.black),
           ),
         ]),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/controllers/badmintonController.dart';
 import 'package:sport_booking/models/sportVenue.dart';
+import 'package:sport_booking/pages/menu/football/football_details.dart';
 
 class BadmintonPage extends StatefulWidget {
   const BadmintonPage({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class _BadmintonPageState extends State<BadmintonPage> {
           ? const Center(
               child: Text(
               'No Data',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ))
           : ListView.builder(
               physics: const ClampingScrollPhysics(),
@@ -71,8 +72,8 @@ class _BadmintonPageState extends State<BadmintonPage> {
                 List<Media> med = List<Media>.from(bt.media!);
                 return GestureDetector(
                     onTap: () {
-                      // Get.to(() => BaitiDetailsPage(), arguments: [bt]);
-                      // print(med[index]);
+                      Get.to(() => const FootballDetails(),
+                          arguments: [bt, med[0].path.toString()]);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(

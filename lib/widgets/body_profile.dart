@@ -98,7 +98,5 @@ displayDeleteDialog() {
 void _deleteToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  prefs.remove("token").then((value) => {
-        print(['token deleted']),
-      });
+  prefs.remove("token");
 }

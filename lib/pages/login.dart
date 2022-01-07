@@ -47,8 +47,7 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     if (response.statusCode == 200) {
-      final detail = json.decode(response.body);
-      print('detail: ' + detail.toString());
+      // final detail = json.decode(response.body);
 
       setState(() {
         _isLoading = false;
@@ -70,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
           Get.back();
         },
       );
-      print(response.body);
+      // print(response.body);
       throw Exception('Failed to load data!');
     }
   }

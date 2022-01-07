@@ -52,7 +52,7 @@ class PlacesStaggeredView extends StatelessWidget {
           crossAxisSpacing: 20.0,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: () => Get.to(() => _pageOptions[index]),
+              onTap: () => Get.to(() => _pageOptions[index], arguments: 1),
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(

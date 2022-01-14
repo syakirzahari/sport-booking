@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
                 width: double.infinity,
                 height: size.height * 0.55,
                 fit: BoxFit.fill,
-                image: const AssetImage("assets/images/landing.JPG"),
+                image: const AssetImage("assets/images/landing.png"),
               ),
               buildTitle(size),
             ],

@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/pages/login.dart';
+import 'package:sport_booking/pages/settings/about.dart';
 import 'package:sport_booking/pages/settings/account.dart';
+import 'package:sport_booking/pages/settings/policy.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/widgets/profile_menu.dart';
 
@@ -68,12 +70,12 @@ class BodyProfileState extends State<BodyProfile> {
           ProfileMenu(
             text: "About Us",
             icon: Icons.info_outline,
-            press: () {},
+            press: () => Get.to(() => const AboutPage()),
           ),
           ProfileMenu(
             text: "Privacy & Policy",
             icon: Icons.privacy_tip_outlined,
-            press: () {},
+            press: () => Get.to(() => const PolicyPage()),
           ),
           ProfileMenu(
             text: "Contact Us",

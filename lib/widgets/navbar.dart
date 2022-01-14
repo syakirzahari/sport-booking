@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:sport_booking/pages/book.dart';
 import 'package:sport_booking/pages/home.dart';
 import 'package:sport_booking/pages/list_book.dart';
 import 'package:sport_booking/pages/settings/profile.dart';
@@ -19,7 +18,7 @@ class NavBarPageState extends State<NavBarPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    BookPage(),
+    // BookPage(),
     ListBookPage(),
     ProfilePage(),
   ];
@@ -60,11 +59,11 @@ class NavBarPageState extends State<NavBarPage> {
                   text: 'Home',
                   textColor: Colors.red[800],
                 ),
-                GButton(
-                  icon: LineIcons.calendar,
-                  text: 'Book',
-                  textColor: Colors.red[800],
-                ),
+                // GButton(
+                //   icon: LineIcons.calendar,
+                //   text: 'Book',
+                //   textColor: Colors.red[800],
+                // ),
                 GButton(
                   icon: LineIcons.list,
                   text: 'Mine',

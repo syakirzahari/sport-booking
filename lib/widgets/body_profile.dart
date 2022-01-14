@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/pages/login.dart';
+import 'package:sport_booking/pages/settings/account.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/widgets/profile_menu.dart';
 
@@ -57,7 +58,7 @@ class BodyProfileState extends State<BodyProfile> {
           ProfileMenu(
             text: "My Account",
             icon: Icons.supervised_user_circle_outlined,
-            press: () => {},
+            press: () => Get.to(() => const AccountPage()),
           ),
           ProfileMenu(
             text: "Change Password",

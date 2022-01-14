@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sport_booking/api/token.dart';
+import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/sportVenue.dart';
 
 class ApiService {
@@ -96,6 +97,27 @@ class ApiService {
       print('list: ' + pr.toString());
 
       return pr.map((json) => DataSport.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Get UserData
+  Future<DataProfile> getUserProfile() async {
+    String? token = await TokenService().getToken();
+
+    final response = await http.get(Uri.parse("$baseUrl/users"), headers: {
+      "content-type": "application/json",
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+
+    if (response.statusCode == 200) {
+      // print(response.body);
+      Map<String, dynamic> map = json.decode(response.body)['data'];
+      // ignore: avoid_print
+
+      return DataProfile.fromJson(map);
     } else {
       throw Exception('Failed to load data!');
     }

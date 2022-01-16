@@ -17,7 +17,6 @@ class BadmintonController extends GetxController {
     try {
       var b = await ApiService.getListBadmintonVenues();
       bad.value = b;
-      update();
     } finally {
       isLoading(false);
     }

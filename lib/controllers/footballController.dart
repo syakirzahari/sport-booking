@@ -17,7 +17,6 @@ class FootballController extends GetxController {
     try {
       var b = await ApiService.getListFootballVenues();
       fot.value = b;
-      update();
     } finally {
       isLoading(false);
     }

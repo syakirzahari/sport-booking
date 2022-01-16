@@ -41,7 +41,7 @@ class PlacesStaggeredView extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
       child: SizedBox(
-        height: 275.0,
+        height: Get.size.height * 0.5,
         width: double.infinity,
         child: StaggeredGridView.countBuilder(
           shrinkWrap: true,

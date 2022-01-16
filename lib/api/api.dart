@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:sport_booking/api/token.dart';
 import 'package:sport_booking/models/feedback.dart';
 import 'package:sport_booking/models/profile.dart';
+import 'package:sport_booking/models/slider.dart';
 import 'package:sport_booking/models/sportVenue.dart';
 
 class ApiService {
@@ -154,6 +155,30 @@ class ApiService {
       Map<String, dynamic> map = json.decode(response.body)['data'];
 
       return DataFeedback.fromJson(map);
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Get List Slider
+  Future<List<DataSlider>> getListSlider() async {
+    String? token = await TokenService().getToken();
+
+    final response =
+        await http.get(Uri.parse("$baseUrl/image-sliders"), headers: {
+      "content-type": "application/json",
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+
+    if (response.statusCode == 200) {
+      // print(response.body);
+      Map<String, dynamic> map = json.decode(response.body);
+      List<dynamic> pr = map['data'];
+      // ignore: avoid_print
+      // print('list: ' + pr.toString());
+
+      return pr.map((json) => DataSlider.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load data!');
     }

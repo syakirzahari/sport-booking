@@ -4,20 +4,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/api/api.dart';
 import 'package:sport_booking/widgets/navbar.dart';
 
-class ChangePasswordPage extends StatefulWidget {
-  const ChangePasswordPage({Key? key}) : super(key: key);
+class ContactUsPage extends StatefulWidget {
+  const ContactUsPage({Key? key}) : super(key: key);
 
   @override
-  _ChangePasswordPageState createState() => _ChangePasswordPageState();
+  _ContactUsPageState createState() => _ContactUsPageState();
 }
 
-class _ChangePasswordPageState extends State<ChangePasswordPage> {
+class _ContactUsPageState extends State<ContactUsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerConfirmPassword =
-      TextEditingController();
+  final TextEditingController _controllerTitle = TextEditingController();
+  final TextEditingController _controllerContent = TextEditingController();
   bool _isLoading = false;
-  bool hidePassword = true;
   ApiService apiService = ApiService();
 
   @override
@@ -39,7 +37,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           color: Colors.red[800], //change your color here
         ),
         title: Text(
-          'Change Password',
+          'Contact Us',
           style: GoogleFonts.poppins(
               color: Colors.black, fontWeight: FontWeight.w600),
         ),
@@ -52,40 +50,29 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             child: Form(
                 key: _formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 10,
                     ),
-                    _buildTextPassword(
-                        _controllerPassword, 'Enter New Password'),
+                    _buildText(_controllerTitle, 'Enter Title', 2),
                     const SizedBox(height: 10.0),
-                    _buildTextConfirmPassword(
-                        _controllerConfirmPassword, 'Confirm Your Password'),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Text(
-                          '**Password must have at least 1 uppercase, 1 lowercase, 1 number and minimum 8 characters',
-                          style: GoogleFonts.poppins(
-                            fontStyle: FontStyle.italic,
-                            fontSize: 10,
-                            color: Colors.black,
-                          )),
-                    ),
+                    _buildText(_controllerContent, 'Enter Enquiry', 8),
                     const SizedBox(
                       height: 10,
                     ),
                     GestureDetector(
                         onTap: () {
-                          String cpass = _controllerConfirmPassword.text;
+                          String title = _controllerTitle.text;
+                          String desc = _controllerContent.text;
 
                           if (validateAndSave()) {
                             setState(() {
                               _isLoading = true;
                             });
 
-                            apiService.updatePassword(cpass).then((value) {
-                              if (value['data'] == "success") {
+                            apiService.sendFeedback(title, desc).then((value) {
+                              if (value['success'] == true) {
                                 setState(() {
                                   _isLoading = false;
                                 });
@@ -131,7 +118,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                       color: Colors.white,
                                     )
                                   : const Text(
-                                      "SAVE",
+                                      "SEND",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w700,
@@ -172,6 +159,30 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             ),
                           ),
                         )),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hotline: 03-3333333',
+                            style: GoogleFonts.poppins(
+                                color: Colors.black, fontSize: 14),
+                          ),
+                          Text(
+                            'Email: sportcms2022@gmail.com',
+                            style: GoogleFonts.poppins(
+                                color: Colors.black, fontSize: 14),
+                          ),
+                          Text(
+                            'Address: Shah Alam, Selangor',
+                            style: GoogleFonts.poppins(
+                                color: Colors.black, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ))),
       ),
@@ -187,25 +198,25 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return false;
   }
 
-  Widget _buildTextPassword(TextEditingController controller, String label) {
+  Widget _buildText(TextEditingController controller, String label, int line) {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
-          Radius.circular(50),
+          Radius.circular(20),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 25,
-            offset: Offset(0, 5),
-            spreadRadius: -25,
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.black,
+        //     blurRadius: 10,
+        //     offset: Offset(0, 5),
+        //     spreadRadius: -25,
+        //   ),
+        // ],
       ),
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: TextFormField(
         controller: controller,
-        obscureText: hidePassword,
+        maxLines: line,
         style: GoogleFonts.poppins(
           textStyle: const TextStyle(
             fontSize: 15,
@@ -215,15 +226,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         ),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 25),
-          suffixIcon: IconButton(
-            onPressed: () {
-              setState(() {
-                hidePassword = !hidePassword;
-              });
-            },
-            color: Colors.black.withOpacity(0.4),
-            icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility),
-          ),
           hintText: label,
           hintStyle: const TextStyle(
             color: Color(0xffA6B0BD),
@@ -231,7 +233,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           fillColor: Colors.white,
           filled: true,
           prefixIcon: const Icon(
-            Icons.lock_outline,
+            Icons.document_scanner_outlined,
             color: Colors.black,
           ),
           prefixIconConstraints: const BoxConstraints(
@@ -239,99 +241,22 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           ),
           enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(50),
+              Radius.circular(20),
             ),
             borderSide: BorderSide(color: Colors.white),
           ),
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(50),
+              Radius.circular(20),
             ),
             borderSide: BorderSide(color: Colors.white),
           ),
         ),
         validator: (passwordValue) {
           if (passwordValue!.isEmpty) {
-            return 'Enter New Password';
+            return 'Enter Enquiry Title';
           }
           // username = usernameValue;
-          return null;
-        },
-      ),
-    );
-  }
-
-  Widget _buildTextConfirmPassword(
-      TextEditingController controller, String label) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(50),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 25,
-            offset: Offset(0, 5),
-            spreadRadius: -25,
-          ),
-        ],
-      ),
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: TextFormField(
-        controller: controller,
-        obscureText: hidePassword,
-        style: GoogleFonts.poppins(
-          textStyle: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Color(0xff000912),
-          ),
-        ),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 25),
-          suffixIcon: IconButton(
-            onPressed: () {
-              setState(() {
-                hidePassword = !hidePassword;
-              });
-            },
-            color: Colors.black.withOpacity(0.4),
-            icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility),
-          ),
-          hintText: label,
-          hintStyle: const TextStyle(
-            color: Color(0xffA6B0BD),
-          ),
-          fillColor: Colors.white,
-          filled: true,
-          prefixIcon: const Icon(
-            Icons.lock_outline,
-            color: Colors.black,
-          ),
-          prefixIconConstraints: const BoxConstraints(
-            minWidth: 75,
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
-            ),
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
-            ),
-            borderSide: BorderSide(color: Colors.white),
-          ),
-        ),
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Confirm Your Password';
-          }
-          if (_controllerPassword.text != _controllerConfirmPassword.text) {
-            return "Password confirmation does not match";
-          }
           return null;
         },
       ),

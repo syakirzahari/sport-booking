@@ -202,4 +202,23 @@ class ApiService {
       print(e);
     }
   }
+
+  //Update Password
+  Future sendFeedback(String title, String content) async {
+    String? token = await TokenService().getToken();
+
+    Map data = {'title': title, 'content': content};
+    try {
+      final response = await http.post(Uri.parse("$baseUrl/feedback"),
+          body: data,
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token'
+          });
+      print(response.body);
+      return json.decode(response.body);
+    } catch (e) {
+      print(e);
+    }
+  }
 }

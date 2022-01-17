@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/api/api.dart';
-import 'package:sport_booking/api/token.dart';
-import 'package:sport_booking/models/slider.dart';
 import 'package:sport_booking/widgets/build_title.dart';
 import 'package:sport_booking/widgets/sport_menu.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,40 +15,22 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   ApiService apiService = ApiService();
-  List<DataSlider> med = [];
+  List med = [];
 
   @override
   void initState() {
     super.initState();
-    getListSlider();
+    // getListSlider();
+    apiService.getListSlider().then((value) {
+      setState(() {
+        value.map((e) => med.add(e.media![0].path)).toList();
+      });
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
-  }
-
-  Future<List<DataSlider>> getListSlider() async {
-    String? token = await TokenService().getToken();
-
-    final response = await http
-        .get(Uri.parse(ApiService.baseUrl + "/image-sliders"), headers: {
-      "content-type": "application/json",
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token'
-    });
-
-    if (response.statusCode == 200) {
-      // print(response.body);
-      Map<String, dynamic> map = json.decode(response.body);
-      List<dynamic> pr = map['data'];
-      // ignore: avoid_print
-      print('list: ' + pr.toString());
-
-      return pr.map((json) => DataSlider.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load data!');
-    }
   }
 
   @override

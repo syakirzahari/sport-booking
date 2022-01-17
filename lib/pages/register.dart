@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerConfirmPassword =
       TextEditingController();
   String? check1;
-  // bool _isLoading = false;
+  bool _isLoading = false;
   bool _isChecked1 = false;
   bool hidePassword = true;
 
@@ -370,7 +370,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         validator: (passwordValue) {
           if (passwordValue!.isEmpty) {
-            return 'Enter Email Address';
+            return 'Enter Your Password';
           }
           // username = usernameValue;
           return null;
@@ -444,7 +444,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         validator: (passwordValue) {
           if (passwordValue!.isEmpty) {
-            return 'Enter Email Address';
+            return 'Confirm Your Password';
           }
           // username = usernameValue;
           return null;
@@ -538,16 +538,20 @@ class _RegisterPageState extends State<RegisterPage> {
             color: Colors.red[900],
             borderRadius: BorderRadius.circular(30),
           ),
-          child: const Center(
+          child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4),
-              child: Text(
-                "REGISTER",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: _isLoading
+                  ? CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : const Text(
+                      "REGISTER",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
             ),
           ),
         ));

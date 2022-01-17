@@ -183,4 +183,23 @@ class ApiService {
       throw Exception('Failed to load data!');
     }
   }
+
+  //Update Password
+  Future updatePassword(String password) async {
+    String? token = await TokenService().getToken();
+
+    Map data = {'password': password};
+    try {
+      final response = await http.post(Uri.parse("$baseUrl/update_password"),
+          body: data,
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token'
+          });
+      print(response.body);
+      return json.decode(response.body);
+    } catch (e) {
+      print(e);
+    }
+  }
 }

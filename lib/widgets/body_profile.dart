@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/pages/login.dart';
 import 'package:sport_booking/pages/settings/about.dart';
 import 'package:sport_booking/pages/settings/account.dart';
+import 'package:sport_booking/pages/settings/change_password.dart';
 import 'package:sport_booking/pages/settings/policy.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_booking/widgets/profile_menu.dart';
@@ -65,7 +66,7 @@ class BodyProfileState extends State<BodyProfile> {
           ProfileMenu(
             text: "Change Password",
             icon: Icons.password_outlined,
-            press: () {},
+            press: () => Get.to(() => const ChangePasswordPage()),
           ),
           ProfileMenu(
             text: "About Us",

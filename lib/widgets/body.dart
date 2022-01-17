@@ -43,12 +43,15 @@ class _BodyState extends State<Body> {
             children: <Widget>[
               CarouselSlider(
                 options: CarouselOptions(
-                  autoPlay: true,
-                  viewportFraction: 1.0,
-                  height: widget.size.height * 0.45,
-                ),
+                    autoPlay: true,
+                    viewportFraction: 1.0,
+                    height: widget.size.height * 0.45),
                 items: med
-                    .map((e) => SizedBox(child: Image.network(e.toString())))
+                    .map((e) => Image.network(
+                          e.toString(),
+                          width: double.infinity,
+                          fit: BoxFit.fill,
+                        ))
                     .toList(),
               ),
               buildTitle(widget.size),

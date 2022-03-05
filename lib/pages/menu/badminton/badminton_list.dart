@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sport_booking/controllers/badmintonController.dart';
-import 'package:sport_booking/models/sportVenue.dart';
+import 'package:sport_booking/controllers/badminton_controller.dart';
+import 'package:sport_booking/models/sport_venue.dart';
 import 'package:sport_booking/pages/menu/football/football_details.dart';
 
 class BadmintonPage extends StatefulWidget {

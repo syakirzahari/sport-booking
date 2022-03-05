@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sport_booking/api/api.dart';
-import 'package:sport_booking/models/sportVenue.dart';
+import 'package:sport_booking/models/sport_venue.dart';
 
 class VenueController extends GetxController {
   var isLoading = true.obs;

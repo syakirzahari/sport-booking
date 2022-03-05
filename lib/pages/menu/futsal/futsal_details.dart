@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sport_booking/pages/menu/booking/booking.dart';
 
 class FutsalDetails extends StatefulWidget {
   const FutsalDetails({Key? key}) : super(key: key);
@@ -117,7 +118,8 @@ class _FutsalDetailsState extends State<FutsalDetails> {
                   _directions,
 
                   InkWell(
-                    onTap: () async {},
+                    onTap: () => Get.to(() => const BookingPage(),
+                        arguments: [Get.arguments[0].name, 'Futsal']),
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 20.0, right: 20.0, top: 50.0, bottom: 30.0),

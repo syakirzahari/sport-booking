@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerConfirmPassword =
       TextEditingController();
   String? check1;
-  bool _isLoading = false;
+  final bool _isLoading = false;
   bool _isChecked1 = false;
   bool hidePassword = true;
 
@@ -542,7 +542,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: _isLoading
-                  ? CircularProgressIndicator(
+                  ? const CircularProgressIndicator(
                       color: Colors.white,
                     )
                   : const Text(

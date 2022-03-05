@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           backgroundColor: Colors.white,
           primaryColorLight: Colors.white,
-          primaryColorBrightness: Brightness.light,
+          // primaryColorBrightness: Brightness.light,
           primaryColor: Colors.white),
       home: const LandingSlider(),
     );

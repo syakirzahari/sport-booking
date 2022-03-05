@@ -4,7 +4,7 @@ import 'package:sport_booking/api/token.dart';
 import 'package:sport_booking/models/feedback.dart';
 import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/slider.dart';
-import 'package:sport_booking/models/sportVenue.dart';
+import 'package:sport_booking/models/sport_venue.dart';
 
 class ApiService {
   static String baseUrl = "http://128.199.198.193/api";

@@ -4,6 +4,7 @@ import 'package:sport_booking/api/token.dart';
 import 'package:sport_booking/models/feedback.dart';
 import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/slider.dart';
+import 'package:sport_booking/models/sport_type.dart';
 import 'package:sport_booking/models/sport_venue.dart';
 
 class ApiService {
@@ -219,6 +220,20 @@ class ApiService {
       return json.decode(response.body);
     } catch (e) {
       print(e);
+    }
+  }
+
+  //Get List Sport
+  Future<List<SportType>> getSportType() async {
+    final response = await http.get(Uri.parse("$baseUrl/sport_types"));
+
+    if (response.statusCode == 200) {
+      // print(response.body);
+      List<dynamic> map = json.decode(response.body);
+
+      return map.map((json) => SportType.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
     }
   }
 }

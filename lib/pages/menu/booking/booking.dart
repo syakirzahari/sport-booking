@@ -13,7 +13,7 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
-  GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _controllerDate = TextEditingController();
   final bool _isLoading = false;
   final format = DateFormat("yyyy-MM-dd");
@@ -74,124 +74,122 @@ class _BookingPageState extends State<BookingPage> {
                   elevation: 0,
                   child: Padding(
                       padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sport Type:',
-                            style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.red[800],
-                                fontWeight: FontWeight.w700),
-                          ),
-                          _dropdownSport(),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Venue:',
-                            style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.red[800],
-                                fontWeight: FontWeight.w700),
-                          ),
-                          _dropdownVenue(),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Date:',
-                            style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.red[800],
-                                fontWeight: FontWeight.w700),
-                          ),
-                          DateTimePicker(
-                            decoration: InputDecoration(
-                              focusColor: Colors.white,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    width: 0.7, color: Colors.black54),
+                      child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Sport Type:',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Colors.red[800],
+                                    fontWeight: FontWeight.w700),
                               ),
-                              disabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    width: 0.7, color: Colors.black54),
+                              _dropdownSport(),
+                              const SizedBox(height: 10),
+                              Text(
+                                'Venue:',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Colors.red[800],
+                                    fontWeight: FontWeight.w700),
                               ),
-                            ),
-                            controller: _controllerDate,
-                            type: DateTimePickerType.date,
-                            dateLabelText: 'Tarikh Pendaftaran',
-                            firstDate: DateTime(1995),
-                            lastDate: DateTime.now().add(const Duration(
-                                days:
-                                    365)), // This will add one year from current date
-                            validator: (value) {
-                              return null;
-                            },
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                setState(() {
-                                  _selectedDate = value;
-                                  print(_selectedDate);
-                                });
-                              }
-                            },
-                            // We can also use onSaved
-                            onSaved: (value) {
-                              if (value!.isNotEmpty) {
-                                _selectedDate = value;
-                              }
-                            },
-                          ),
-                        ],
-                      )),
+                              _dropdownVenue(),
+                              const SizedBox(height: 10),
+                              // Text(
+                              //   'Date:',
+                              //   style: GoogleFonts.poppins(
+                              //       fontSize: 14,
+                              //       color: Colors.red[800],
+                              //       fontWeight: FontWeight.w700),
+                              // ),
+                              DateTimePicker(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  focusColor: Colors.white,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  labelText: "Select Date",
+                                  labelStyle: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      color: Colors.red[800],
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                controller: _controllerDate,
+                                type: DateTimePickerType.date,
+                                dateLabelText: 'Tarikh Pendaftaran',
+                                firstDate: DateTime(1995),
+                                lastDate: DateTime.now().add(const Duration(
+                                    days:
+                                        365)), // This will add one year from current date
+                                validator: (value) {
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    setState(() {
+                                      _selectedDate = value;
+                                      print(_selectedDate);
+                                    });
+                                  }
+                                },
+                                // We can also use onSaved
+                                onSaved: (value) {
+                                  if (value!.isNotEmpty) {
+                                    _selectedDate = value;
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 30.0),
+                              SizedBox(
+                                height: 50,
+                                child: Material(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    shadowColor: Colors.greenAccent,
+                                    color: Colors.red[900],
+                                    child: MaterialButton(
+                                      minWidth: Get.size.width,
+                                      padding: const EdgeInsets.fromLTRB(
+                                          20.0, 15.0, 20.0, 15.0),
+                                      onPressed: () async {
+                                        // final String nama = _controllerName.text;
+                                      },
+                                      child: Text(
+                                        'Check Availability ',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
+                              ),
+                              const SizedBox(height: 10.0),
+                              SizedBox(
+                                height: 50,
+                                child: Material(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    shadowColor: Colors.greenAccent,
+                                    color: Colors.black,
+                                    child: MaterialButton(
+                                      minWidth: Get.size.width,
+                                      padding: const EdgeInsets.fromLTRB(
+                                          20.0, 15.0, 20.0, 15.0),
+                                      onPressed: () async {
+                                        Get.back();
+                                      },
+                                      child: Text(
+                                        'Back',
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
+                              )
+                            ],
+                          ))),
                 )),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 50.0, bottom: 10.0),
-                child: Container(
-                  height: 52.0,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.red[800],
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(40.0))),
-                  child: const Center(
-                    child: Text(
-                      'Next',
-                      style: TextStyle(
-                          fontFamily: "Sofia",
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.0),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, bottom: 30.0),
-                child: Container(
-                  height: 52.0,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(40.0))),
-                  child: const Center(
-                    child: Text(
-                      'Back',
-                      style: TextStyle(
-                          fontFamily: "Sofia",
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.0),
-                    ),
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
@@ -201,7 +199,11 @@ class _BookingPageState extends State<BookingPage> {
   Widget _dropdownSport() {
     return Container(
         alignment: Alignment.centerLeft,
-        height: 80.0,
+        decoration: BoxDecoration(
+          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        height: 60.0,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
           Expanded(
@@ -210,8 +212,11 @@ class _BookingPageState extends State<BookingPage> {
                 alignedDropdown: true,
                 child: DropdownButtonFormField<String>(
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
+                      enabledBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none
+                      // border: OutlineInputBorder(),
+                      ),
                   isExpanded: true,
                   value: sportType,
                   hint: const Text(
@@ -245,7 +250,11 @@ class _BookingPageState extends State<BookingPage> {
   Widget _dropdownVenue() {
     return Container(
         alignment: Alignment.centerLeft,
-        height: 80.0,
+        height: 60.0,
+        decoration: BoxDecoration(
+          color: Colors.grey[100],
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
           Expanded(
@@ -254,8 +263,9 @@ class _BookingPageState extends State<BookingPage> {
                 alignedDropdown: true,
                 child: DropdownButtonFormField<String>(
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
+                      enabledBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none),
                   isExpanded: true,
                   value: venueType,
                   hint: const Text(

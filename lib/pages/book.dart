@@ -14,7 +14,7 @@ class _BookPageState extends State<BookPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Instant Book',
+          'Test Page',
           style: GoogleFonts.poppins(
               color: Colors.black, fontWeight: FontWeight.w600),
         ),

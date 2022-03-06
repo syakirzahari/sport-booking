@@ -4,6 +4,7 @@ import 'package:sport_booking/api/token.dart';
 import 'package:sport_booking/models/feedback.dart';
 import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/slider.dart';
+import 'package:sport_booking/models/slot.dart';
 import 'package:sport_booking/models/sport_type.dart';
 import 'package:sport_booking/models/sport_venue.dart';
 
@@ -232,6 +233,30 @@ class ApiService {
       List<dynamic> map = json.decode(response.body);
 
       return map.map((json) => SportType.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Check Availability
+  Future<List<DataSlot>> checkAvailability(
+      String venue, String sport, String date) async {
+    String? token = await TokenService().getToken();
+
+    Map data = {'venue_id': venue, 'sport_id': sport, 'date': date};
+
+    final response = await http.post(Uri.parse("$baseUrl/slot-availability"),
+        body: data,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token'
+        });
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      List<dynamic> map = json.decode(response.body)['data'];
+
+      return map.map((json) => DataSlot.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load data!');
     }

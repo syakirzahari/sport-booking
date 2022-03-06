@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sport_booking/api/api.dart';
+import 'package:get/get.dart';
 
 class CheckAvailabilityPage extends StatefulWidget {
   const CheckAvailabilityPage({Key? key}) : super(key: key);
@@ -9,8 +11,13 @@ class CheckAvailabilityPage extends StatefulWidget {
 }
 
 class _CheckAvailabilityPageState extends State<CheckAvailabilityPage> {
+  ApiService apiService = ApiService();
+
   @override
   void initState() {
+    apiService
+        .checkAvailability(Get.arguments[0], Get.arguments[1], Get.arguments[2])
+        .then((value) {});
     super.initState();
   }
 
@@ -35,6 +42,14 @@ class _CheckAvailabilityPageState extends State<CheckAvailabilityPage> {
         elevation: 1,
         // centerTitle: true,
         backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [],
+          ),
+        ),
       ),
     );
   }

@@ -39,7 +39,7 @@ class _AboutPageState extends State<AboutPage> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: FutureBuilder(
-            future: apiService.getPrivacyPolicy(),
+            future: apiService.getAboutUs(),
             builder:
                 (BuildContext context, AsyncSnapshot<DataFeedback?> snapshot) {
               if (snapshot.hasError || !snapshot.hasData) {

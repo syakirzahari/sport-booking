@@ -19,7 +19,7 @@ class NavBarPageState extends State<NavBarPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    BookPage(),
+    InstantBookingPage(),
     ListBookPage(),
     ProfilePage(),
   ];
@@ -62,7 +62,7 @@ class NavBarPageState extends State<NavBarPage> {
                 ),
                 GButton(
                   icon: LineIcons.calendar,
-                  text: 'Test',
+                  text: 'Booking',
                   textColor: Colors.red[800],
                 ),
                 GButton(

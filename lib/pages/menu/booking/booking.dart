@@ -18,7 +18,7 @@ class _BookingPageState extends State<BookingPage> {
   ApiService apiService = ApiService();
   List? sportList, venueList = [];
   String? sportType, venueType;
-  String? _setTime, _setDate;
+  String? _setTime, _setDate, venueName;
 
   DateTime selectedDate = DateTime.now();
 
@@ -54,7 +54,7 @@ class _BookingPageState extends State<BookingPage> {
 
     if (Get.arguments != null) {
       sportType = Get.arguments[1].toString();
-      venueType = Get.arguments[0].toString();
+      venueType = Get.arguments[0].id.toString();
     }
   }
 
@@ -207,7 +207,8 @@ class _BookingPageState extends State<BookingPage> {
                                       arguments: [
                                         venueType.toString(),
                                         sportType.toString(),
-                                        _dateController.text
+                                        _dateController.text,
+                                        venueName
                                       ]);
                                 }
                               },

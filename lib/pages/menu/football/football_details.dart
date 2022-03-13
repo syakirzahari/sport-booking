@@ -119,7 +119,7 @@ class _FootballDetailsState extends State<FootballDetails> {
 
                   InkWell(
                     onTap: () => Get.to(() => const BookingPage(),
-                        arguments: [Get.arguments[0].id, 1]),
+                        arguments: [Get.arguments[0], 1]),
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 20.0, right: 20.0, top: 50.0, bottom: 30.0),

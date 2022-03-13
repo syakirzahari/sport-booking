@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/api/api.dart';
 import 'package:get/get.dart';
 import 'package:sport_booking/models/slot.dart';
+import 'package:sport_booking/pages/menu/booking/confirm_booking.dart';
 
 class CheckAvailabilityPage extends StatefulWidget {
   const CheckAvailabilityPage({Key? key}) : super(key: key);
@@ -94,16 +95,57 @@ Widget buildListView(context, List<DataSlot>? sl) {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text("Place: " +
-                                            fa.venueSlot!.courtName.toString()),
+                                        Text(
+                                          "Place: " +
+                                              fa.venueSlot!.courtName
+                                                  .toString(),
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.black,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600),
+                                        ),
                                         const SizedBox(height: 10),
-                                        Text("Time From: " +
-                                            fa.timeFrom.toString()),
-                                        Text("Time To: " + fa.timeTo.toString())
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.timer,
+                                              color: Colors.black,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                                "From: " +
+                                                    fa.timeFrom.toString(),
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.black,
+                                                    fontSize: 15)),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.timer,
+                                              color: Colors.black,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text("To: " + fa.timeTo.toString(),
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.black,
+                                                    fontSize: 15)),
+                                          ],
+                                        ),
                                       ])),
                               Expanded(
-                                  flex: 1,
-                                  child: Text("RM " + fa.rate.toString()))
+                                  flex: 2,
+                                  child: Chip(
+                                      backgroundColor: Colors.red[800],
+                                      label: Text("RM " + fa.rate.toString(),
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 18))))
                             ]),
                             const SizedBox(height: 10),
                             SizedBox(
@@ -118,12 +160,20 @@ Widget buildListView(context, List<DataSlot>? sl) {
                                         foregroundColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.red),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
+                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                             const RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.zero,
-                                                side: BorderSide(color: Colors.red)))),
-                                    onPressed: () {})),
+                                                side: BorderSide(
+                                                    color: Colors.red)))),
+                                    onPressed: () =>
+                                        Get.to(() => const ConfirmBookingPage(), arguments: [
+                                          fa.venueSlot!.courtName.toString(),
+                                          fa.timeFrom.toString(),
+                                          fa.timeTo.toString(),
+                                          fa.rate.toString(),
+                                          Get.arguments[1],
+                                          Get.arguments[3],
+                                        ]))),
                           ],
                         ))),
               );

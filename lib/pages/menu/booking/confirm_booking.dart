@@ -55,7 +55,7 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
             child: AnimatedContainer(
                 duration: const Duration(milliseconds: 700),
                 curve: Curves.bounceInOut,
-                height: 400,
+                height: 500,
                 padding: const EdgeInsets.all(20),
                 width: Get.size.width - 40,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -86,15 +86,15 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                           style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontWeight: FontWeight.w600)),
-                      if (Get.arguments[4] == '1')
+                      if (Get.arguments[4] == 1)
                         Text('Football',
                             style: GoogleFonts.poppins(
                                 fontSize: 17, color: Colors.grey[600])),
-                      if (Get.arguments[4] == '2')
+                      if (Get.arguments[4] == 2)
                         Text('Futsal',
                             style: GoogleFonts.poppins(
                                 fontSize: 17, color: Colors.grey[600])),
-                      if (Get.arguments[4] == '3')
+                      if (Get.arguments[4] == 3)
                         Text('Badminton',
                             style: GoogleFonts.poppins(
                                 fontSize: 17, color: Colors.grey[600])),
@@ -104,6 +104,14 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                               color: Colors.black,
                               fontWeight: FontWeight.w600)),
                       Text(Get.arguments[0],
+                          style: GoogleFonts.poppins(
+                              fontSize: 17, color: Colors.grey[600])),
+                      const SizedBox(height: 10),
+                      Text('Date:',
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600)),
+                      Text(Get.arguments[6],
                           style: GoogleFonts.poppins(
                               fontSize: 17, color: Colors.grey[600])),
                       const SizedBox(height: 10),

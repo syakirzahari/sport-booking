@@ -137,15 +137,35 @@ Widget buildListView(context, List<DataSlot>? sl) {
                                                     fontSize: 15)),
                                           ],
                                         ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.attach_money_outlined,
+                                              color: Colors.black,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                                "Deposit: RM " +
+                                                    fa.depositRate.toString(),
+                                                style: GoogleFonts.poppins(
+                                                    color: Colors.black,
+                                                    fontSize: 15)),
+                                          ],
+                                        ),
                                       ])),
                               Expanded(
-                                  flex: 2,
+                                  flex: 3,
                                   child: Chip(
                                       backgroundColor: Colors.red[800],
-                                      label: Text("RM " + fa.rate.toString(),
+                                      label: Text(
+                                          "RM " +
+                                              fa.rate.toString() +
+                                              ' / Slot',
                                           style: GoogleFonts.poppins(
                                               color: Colors.white,
-                                              fontSize: 18))))
+                                              fontSize: 12))))
                             ]),
                             const SizedBox(height: 10),
                             SizedBox(
@@ -160,20 +180,92 @@ Widget buildListView(context, List<DataSlot>? sl) {
                                         foregroundColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.red),
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
                                             const RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.zero,
-                                                side: BorderSide(
-                                                    color: Colors.red)))),
-                                    onPressed: () =>
-                                        Get.to(() => const ConfirmBookingPage(), arguments: [
-                                          fa.venueSlot!.courtName.toString(),
-                                          fa.timeFrom.toString(),
-                                          fa.timeTo.toString(),
-                                          fa.rate.toString(),
-                                          Get.arguments[1],
-                                          Get.arguments[3],
-                                        ]))),
+                                                side:
+                                                    BorderSide(color: Colors.red)))),
+                                    onPressed: () {
+                                      // Get.to(() => const ConfirmBookingPage(),
+                                      //     arguments: [
+                                      //       fa.venueSlot!.courtName.toString(),
+                                      //       fa.timeFrom.toString(),
+                                      //       fa.timeTo.toString(),
+                                      //       fa.rate.toString(),
+                                      //       Get.arguments[1],
+                                      //       Get.arguments[3],
+                                      //     ]);
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return Wrap(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(20),
+                                                child: Text(fa
+                                                        .venueSlot!.venue!.name
+                                                        .toString() +
+                                                    ' - ' +
+                                                    fa.venueSlot!.courtName
+                                                        .toString()),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              ListTile(
+                                                onTap: () {
+                                                  Get.to(
+                                                      () =>
+                                                          const ConfirmBookingPage(),
+                                                      arguments: [
+                                                        fa.venueSlot!.courtName
+                                                            .toString(),
+                                                        fa.timeFrom.toString(),
+                                                        fa.timeTo.toString(),
+                                                        fa.depositRate
+                                                            .toString(),
+                                                        fa.venueSlot!.sportId,
+                                                        fa.venueSlot!.venue!
+                                                            .name
+                                                            .toString(),
+                                                        fa.date
+                                                      ]);
+                                                },
+                                                leading: const Icon(
+                                                    Icons.attach_money_sharp),
+                                                title: Text('Pay Deposit: RM ' +
+                                                    fa.depositRate.toString()),
+                                              ),
+                                              ListTile(
+                                                onTap: () {
+                                                  Get.to(
+                                                      () =>
+                                                          const ConfirmBookingPage(),
+                                                      arguments: [
+                                                        fa.venueSlot!.courtName
+                                                            .toString(),
+                                                        fa.timeFrom.toString(),
+                                                        fa.timeTo.toString(),
+                                                        fa.rate.toString(),
+                                                        fa.venueSlot!.sportId,
+                                                        fa.venueSlot!.venue!
+                                                            .name
+                                                            .toString(),
+                                                        fa.date
+                                                      ]);
+                                                },
+                                                leading: const Icon(
+                                                    Icons.attach_money_sharp),
+                                                title: Text('Pay : RM ' +
+                                                    fa.rate.toString()),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    })),
                           ],
                         ))),
               );

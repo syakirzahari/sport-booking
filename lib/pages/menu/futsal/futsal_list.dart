@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/controllers/futsal_controller.dart';
 import 'package:sport_booking/models/sport_venue.dart';
-import 'package:sport_booking/pages/menu/football/football_details.dart';
+// import 'package:sport_booking/pages/menu/football/football_details.dart';
+import 'package:sport_booking/pages/menu/futsal/futsal_details.dart';
 
 class FutsalPage extends StatefulWidget {
   const FutsalPage({Key? key}) : super(key: key);
@@ -72,7 +73,7 @@ class _FutsalPageState extends State<FutsalPage> {
                 List<Media> med = List<Media>.from(bt.media!);
                 return GestureDetector(
                     onTap: () {
-                      Get.to(() => const FootballDetails(),
+                      Get.to(() => const FutsalDetails(),
                           arguments: [bt, med[0].path.toString()]);
                     },
                     child: Padding(

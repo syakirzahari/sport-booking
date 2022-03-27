@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sport_booking/pages/menu/explore.dart';
+import 'package:sport_booking/pages/menu/explore/explore.dart';
 
 Positioned buildTitle(Size size) {
   return Positioned(

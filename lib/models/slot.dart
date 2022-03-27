@@ -33,7 +33,8 @@ class DataSlot {
   String? timeTo;
   int? venueSlotId;
   int? isAvailable;
-  String? rate;
+  int? rate;
+  int? depositRate;
   String? createdAt;
   VenueSlot? venueSlot;
 
@@ -45,6 +46,7 @@ class DataSlot {
       this.venueSlotId,
       this.isAvailable,
       this.rate,
+      this.depositRate,
       this.createdAt,
       this.venueSlot});
 
@@ -55,7 +57,8 @@ class DataSlot {
     if (json["time_to"] is String) timeTo = json["time_to"];
     if (json["venue_slot_id"] is int) venueSlotId = json["venue_slot_id"];
     if (json["is_available"] is int) isAvailable = json["is_available"];
-    if (json["rate"] is String) rate = json["rate"];
+    rate = json["rate"];
+    depositRate = json["deposit_rate"];
     if (json["created_at"] is String) createdAt = json["created_at"];
     if (json["venue_slot"] is Map) {
       venueSlot = json["venue_slot"] == null
@@ -85,9 +88,15 @@ class VenueSlot {
   int? venueId;
   String? courtName;
   String? createdAt;
+  Venue? venue;
 
   VenueSlot(
-      {this.id, this.sportId, this.venueId, this.courtName, this.createdAt});
+      {this.id,
+      this.sportId,
+      this.venueId,
+      this.courtName,
+      this.createdAt,
+      this.venue});
 
   VenueSlot.fromJson(Map<String, dynamic> json) {
     if (json["id"] is int) id = json["id"];
@@ -95,6 +104,9 @@ class VenueSlot {
     if (json["venue_id"] is int) venueId = json["venue_id"];
     if (json["court_name"] is String) courtName = json["court_name"];
     if (json["created_at"] is String) createdAt = json["created_at"];
+    if (json["venue"] is Map) {
+      venue = json["venue"] == null ? null : Venue.fromJson(json["venue"]);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -104,6 +116,68 @@ class VenueSlot {
     data["venue_id"] = venueId;
     data["court_name"] = courtName;
     data["created_at"] = createdAt;
+    return data;
+  }
+}
+
+class Venue {
+  int? id;
+  String? name;
+  String? description;
+  String? address;
+  String? district;
+  int? districtId;
+  String? state;
+  int? stateId;
+  String? latitude;
+  String? longitude;
+  String? telNo;
+  String? vendor;
+
+  Venue(
+      {this.id,
+      this.name,
+      this.description,
+      this.address,
+      this.district,
+      this.districtId,
+      this.state,
+      this.stateId,
+      this.latitude,
+      this.longitude,
+      this.telNo,
+      this.vendor});
+
+  Venue.fromJson(Map<String, dynamic> json) {
+    if (json["id"] is int) id = json["id"];
+    if (json["name"] is String) name = json["name"];
+    if (json["description"] is String) description = json["description"];
+    if (json["address"] is String) address = json["address"];
+    if (json["district"] is String) district = json["district"];
+    if (json["district_id"] is int) districtId = json["district_id"];
+    if (json["state"] is String) state = json["state"];
+    if (json["state_id"] is int) stateId = json["state_id"];
+    if (json["latitude"] is String) latitude = json["latitude"];
+    if (json["longitude"] is String) longitude = json["longitude"];
+    if (json["tel_no"] is String) telNo = json["tel_no"];
+    if (json["vendor"] is String) vendor = json["vendor"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["name"] = name;
+    data["description"] = description;
+    data["address"] = address;
+    data["district"] = district;
+    data["district_id"] = districtId;
+    data["state"] = state;
+    data["state_id"] = stateId;
+    data["latitude"] = latitude;
+    data["longitude"] = longitude;
+    data["tel_no"] = telNo;
+    data["vendor"] = vendor;
+
     return data;
   }
 }

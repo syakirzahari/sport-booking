@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:sport_booking/pages/menu/booking/booking.dart';
 
-class BadmintonDetails extends StatefulWidget {
-  const BadmintonDetails({Key? key}) : super(key: key);
+class ExploreDetails extends StatefulWidget {
+  const ExploreDetails({Key? key}) : super(key: key);
 
   @override
-  State<BadmintonDetails> createState() => _BadmintonDetailsState();
+  State<ExploreDetails> createState() => _ExploreDetailsState();
 }
 
-class _BadmintonDetailsState extends State<BadmintonDetails> {
+class _ExploreDetailsState extends State<ExploreDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

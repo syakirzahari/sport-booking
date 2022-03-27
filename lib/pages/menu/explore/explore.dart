@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/controllers/venue_controller.dart';
 import 'package:sport_booking/models/sport_venue.dart';
 import 'package:sport_booking/pages/menu/explore/explore_details.dart';
-import 'package:sport_booking/pages/menu/football/football_details.dart';
+// import 'package:sport_booking/pages/menu/football/football_details.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({Key? key}) : super(key: key);

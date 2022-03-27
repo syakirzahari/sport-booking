@@ -230,7 +230,12 @@ Widget buildListView(context, List<DataSlot>? sl) {
                                                         fa.venueSlot!.venue!
                                                             .name
                                                             .toString(),
-                                                        fa.date
+                                                        fa.date,
+                                                        fa.venueSlot!.id,
+                                                        fa.venueSlot!.venue!.id,
+                                                        1,
+                                                        0,
+                                                        fa.id.toString()
                                                       ]);
                                                 },
                                                 leading: const Icon(
@@ -253,7 +258,12 @@ Widget buildListView(context, List<DataSlot>? sl) {
                                                         fa.venueSlot!.venue!
                                                             .name
                                                             .toString(),
-                                                        fa.date
+                                                        fa.date,
+                                                        fa.venueSlot!.id,
+                                                        fa.venueSlot!.venue!.id,
+                                                        0,
+                                                        1,
+                                                        fa.id.toString()
                                                       ]);
                                                 },
                                                 leading: const Icon(

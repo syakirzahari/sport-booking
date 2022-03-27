@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sport_booking/api/token.dart';
+import 'package:sport_booking/models/booking.dart';
 import 'package:sport_booking/models/feedback.dart';
 import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/slider.dart';
@@ -257,6 +258,44 @@ class ApiService {
       List<dynamic> map = json.decode(response.body)['data'];
 
       return map.map((json) => DataSlot.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Check Availability
+  Future<List<DataBookingStatus>> createBooking(
+    String total,
+    String slotId,
+    String venueId,
+    String isDeposit,
+    String isFull,
+    String slotAvailabilityId,
+  ) async {
+    String? token = await TokenService().getToken();
+
+    Map data = {
+      'booking no': '#32132232',
+      'total_amount': total,
+      'venue_id': venueId,
+      'slot_id': slotId,
+      'slot_availability_id': slotAvailabilityId,
+      'is_deposit': isDeposit,
+      'is_full': isFull
+    };
+
+    final response = await http.post(Uri.parse("$baseUrl/booking"),
+        body: data,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token'
+        });
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      List<dynamic> map = json.decode(response.body)['data'];
+
+      return map.map((json) => DataBookingStatus.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load data!');
     }

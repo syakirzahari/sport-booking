@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sport_booking/api/api.dart';
 
 class ConfirmBookingPage extends StatefulWidget {
   const ConfirmBookingPage({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class ConfirmBookingPage extends StatefulWidget {
 }
 
 class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
+  ApiService apiService = ApiService();
+
   @override
   void initState() {
     super.initState();
@@ -187,7 +190,23 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                                     borderRadius: BorderRadius.circular(10.0),
                                     side: const BorderSide(
                                         color: Colors.black)))),
-                        onPressed: () {}),
+                        onPressed: () {
+                          apiService
+                              .createBooking(
+                            Get.arguments[3].toString(),
+                            Get.arguments[7].toString(),
+                            Get.arguments[8].toString(),
+                            Get.arguments[9].toString(),
+                            Get.arguments[10].toString(),
+                            Get.arguments[11].toString(),
+                          )
+                              .then((value) {
+                            print(value);
+                            // setState(() {
+                            //   slot = value;
+                            // });
+                          });
+                        }),
                   ),
                 ],
               ),

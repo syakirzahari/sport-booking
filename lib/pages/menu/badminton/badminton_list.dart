@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sport_booking/controllers/badminton_controller.dart';
 import 'package:sport_booking/models/sport_venue.dart';
 import 'package:sport_booking/pages/menu/badminton/badminton_details.dart';
-import 'package:sport_booking/pages/menu/football/football_details.dart';
+// import 'package:sport_booking/pages/menu/football/football_details.dart';
 
 class BadmintonPage extends StatefulWidget {
   const BadmintonPage({Key? key}) : super(key: key);

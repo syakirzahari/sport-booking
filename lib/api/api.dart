@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sport_booking/api/token.dart';
 import 'package:sport_booking/models/booking.dart';
+import 'package:sport_booking/models/bookingdetail.dart';
 import 'package:sport_booking/models/feedback.dart';
 import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/slider.dart';
@@ -296,6 +297,52 @@ class ApiService {
       List<dynamic> map = json.decode(response.body)['data'];
 
       return map.map((json) => DataBookingStatus.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Get UpcomingBooking
+  static Future<List<DataBookingDetail>> getUpcomingBooking() async {
+    String? token = await TokenService().getToken();
+
+    final response =
+        await http.get(Uri.parse("$baseUrl/upcoming-booking"), headers: {
+      "content-type": "application/json",
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(response.body);
+      List<dynamic> ub = map['data'];
+      // ignore: avoid_print
+      print('list: ' + ub.toString());
+
+      return ub.map((json) => DataBookingDetail.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Get PastBooking
+  static Future<List<DataBookingDetail>> getPastBooking() async {
+    String? token = await TokenService().getToken();
+
+    final response =
+        await http.get(Uri.parse("$baseUrl/past-booking"), headers: {
+      "content-type": "application/json",
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(response.body);
+      List<dynamic> pb = map['data'];
+      // ignore: avoid_print
+      print('list: ' + pb.toString());
+
+      return pb.map((json) => DataBookingDetail.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load data!');
     }

@@ -146,6 +146,11 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                               fontStyle: FontStyle.italic,
                               fontSize: 10,
                               color: Colors.black)),
+                      Text('3. Any deposit must be pay during game day',
+                          style: GoogleFonts.poppins(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 10,
+                              color: Colors.black)),
                     ],
                   ),
                 ))),

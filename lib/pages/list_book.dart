@@ -35,6 +35,14 @@ class _ListBookPageState extends State<ListBookPage> {
           style: GoogleFonts.poppins(
               color: Colors.black, fontWeight: FontWeight.w600),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.refresh_outlined,
+                color: Colors.black,
+              ))
+        ],
         backgroundColor: Colors.white,
         elevation: 0,
       ),

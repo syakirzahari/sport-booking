@@ -18,7 +18,7 @@ class _BookingPageState extends State<BookingPage> {
   ApiService apiService = ApiService();
   List? sportList, venueList = [];
   String? sportType, venueType;
-  String? _setTime, _setDate, venueName;
+  String? _setTime, venueName;
 
   DateTime selectedDate = DateTime.now();
 

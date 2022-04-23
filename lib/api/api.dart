@@ -4,6 +4,7 @@ import 'package:sport_booking/api/token.dart';
 import 'package:sport_booking/models/booking.dart';
 import 'package:sport_booking/models/bookingdetail.dart';
 import 'package:sport_booking/models/feedback.dart';
+import 'package:sport_booking/models/find_opponent.dart';
 import 'package:sport_booking/models/profile.dart';
 import 'package:sport_booking/models/slider.dart';
 import 'package:sport_booking/models/slot.dart';
@@ -346,6 +347,29 @@ class ApiService {
       print('list: ' + pb.toString());
 
       return pb.map((json) => DataBookingDetail.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load data!');
+    }
+  }
+
+  //Get Opponent List
+  Future<List<DataOpponent>> getOpponentList() async {
+    String? token = await TokenService().getToken();
+
+    final response =
+        await http.get(Uri.parse("$baseUrl/find-opponent"), headers: {
+      "content-type": "application/json",
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(response.body);
+      List<dynamic> ub = map['data'];
+      // ignore: avoid_print
+      print('list opponent: ' + ub.toString());
+
+      return ub.map((json) => DataOpponent.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load data!');
     }

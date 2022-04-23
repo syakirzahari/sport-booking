@@ -17,7 +17,7 @@ class _CheckAvailabilityPageState extends State<CheckAvailabilityPage> {
   List<DataSlot> slot = [];
   bool _isNoOpponent = false;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
-  TextEditingController _controllerTeamName = TextEditingController();
+  final TextEditingController _controllerTeamName = TextEditingController();
 
   @override
   void initState() {

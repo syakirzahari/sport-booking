@@ -113,7 +113,8 @@ class _ListBookPageState extends State<ListBookPage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: Column(
+                      child: SingleChildScrollView(
+                          child: Column(
                         // mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Obx(() {
@@ -125,11 +126,12 @@ class _ListBookPageState extends State<ListBookPage> {
                             return _buildListView(ubController.ub);
                           }),
                         ],
-                      ),
+                      )),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: Column(
+                      child: SingleChildScrollView(
+                          child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Obx(() {
@@ -141,7 +143,7 @@ class _ListBookPageState extends State<ListBookPage> {
                             return _buildListView(pbController.pb);
                           }),
                         ],
-                      ),
+                      )),
                     ),
                   ],
                 ),
@@ -170,84 +172,6 @@ class _ListBookPageState extends State<ListBookPage> {
               itemBuilder: (context, index) {
                 DataBookingDetail fa = ra[index];
 
-                // return Card(
-                //   color: Colors.red,
-                //   shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(10)),
-                //   elevation: 0,
-                //   child: Container(
-                //     margin: const EdgeInsets.only(bottom: 5),
-                //     decoration: const BoxDecoration(
-                //       color: Colors.white,
-                //       borderRadius: BorderRadius.all(
-                //         Radius.circular(10),
-                //       ),
-                //       boxShadow: [
-                //         BoxShadow(
-                //           color: Colors.black12,
-                //           spreadRadius: 1,
-                //           blurRadius: 3,
-                //         ),
-                //       ],
-                //     ),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       children: <Widget>[
-                //         Expanded(
-                //             flex: 6,
-                //             child: Padding(
-                //               padding: const EdgeInsets.all(10.0),
-                //               child: Column(
-                //                 mainAxisAlignment:
-                //                     MainAxisAlignment.spaceEvenly,
-                //                 crossAxisAlignment: CrossAxisAlignment.start,
-                //                 children: <Widget>[
-                //                   Text(
-                //                     fa.bookingNo.toString(),
-                //                     maxLines: 4,
-                //                     overflow: TextOverflow.ellipsis,
-                //                     style: GoogleFonts.poppins(
-                //                         fontSize: 20,
-                //                         fontWeight: FontWeight.bold),
-                //                   ),
-                //                   const SizedBox(height: 10),
-                //                   Text(
-                //                     fa.totalAmount.toString(),
-                //                     maxLines: 4,
-                //                     overflow: TextOverflow.ellipsis,
-                //                   ),
-                //                   const SizedBox(height: 10),
-                //                   Text(
-                //                     fa.totalAmount.toString(),
-                //                     maxLines: 4,
-                //                     overflow: TextOverflow.ellipsis,
-                //                   ),
-                //                   const SizedBox(height: 10),
-                //                   Text(
-                //                     fa.totalAmount.toString(),
-                //                     maxLines: 4,
-                //                     overflow: TextOverflow.ellipsis,
-                //                   ),
-                //                   const SizedBox(height: 10),
-                //                   Text(
-                //                     fa.totalAmount.toString(),
-                //                     maxLines: 4,
-                //                     overflow: TextOverflow.ellipsis,
-                //                   ),
-                //                   // Text(
-                //                   //   fa.timeFrom.toString(),
-                //                   //   maxLines: 4,
-                //                   //   overflow: TextOverflow.ellipsis,
-                //                   //   style: context.theme.textTheme.headline5,
-                //                   // ),
-                //                 ],
-                //               ),
-                //             )),
-                //       ],
-                //     ),
-                //   ),
-                // );
                 return Padding(
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, top: 8, bottom: 8),
@@ -442,11 +366,13 @@ class _ListBookPageState extends State<ListBookPage> {
                             const SizedBox(
                               width: 16,
                             ),
-                            Text(fa.venue!.name.toString(),
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey)),
+                            Expanded(
+                                child: Text(fa.venue!.name.toString(),
+                                    overflow: TextOverflow.fade,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey))),
                             Expanded(
                                 child: Text("RM " + fa.totalAmount.toString(),
                                     textAlign: TextAlign.end,

@@ -266,13 +266,14 @@ class ApiService {
 
   //Check Availability
   Future<List<DataBookingStatus>> createBooking(
-    String total,
-    String slotId,
-    String venueId,
-    String isDeposit,
-    String isFull,
-    String slotAvailabilityId,
-  ) async {
+      String total,
+      String slotId,
+      String venueId,
+      String isDeposit,
+      String isFull,
+      String slotAvailabilityId,
+      bool isNoOpponent,
+      String teamName) async {
     String? token = await TokenService().getToken();
 
     Map data = {
@@ -282,7 +283,9 @@ class ApiService {
       'slot_id': slotId,
       'slot_availability_id': slotAvailabilityId,
       'is_deposit': isDeposit,
-      'is_full': isFull
+      'is_full': isFull,
+      'is_no_opponent': isNoOpponent == true ? '1' : '0',
+      'team_name': teamName
     };
 
     final response = await http.post(Uri.parse("$baseUrl/booking"),

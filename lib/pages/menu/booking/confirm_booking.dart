@@ -58,7 +58,7 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
             child: AnimatedContainer(
                 duration: const Duration(milliseconds: 700),
                 curve: Curves.bounceInOut,
-                height: 500,
+                height: 530,
                 padding: const EdgeInsets.all(20),
                 width: Get.size.width - 40,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -133,6 +133,18 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                       Text(Get.arguments[2],
                           style: GoogleFonts.poppins(
                               fontSize: 17, color: Colors.grey[600])),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text('Remark:',
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600)),
+                      Get.arguments[12] == true
+                          ? Text('I dont have opponent',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 12, color: Colors.black))
+                          : const Text('-'),
                       const SizedBox(height: 20),
                       Text(
                           '1. Please make sure you arrives at the venue at least 10 minutes before game starts',
@@ -204,6 +216,8 @@ class _ConfirmBookingPageState extends State<ConfirmBookingPage> {
                             Get.arguments[9].toString(),
                             Get.arguments[10].toString(),
                             Get.arguments[11].toString(),
+                            Get.arguments[12],
+                            Get.arguments[13].toString(),
                           )
                               .then((value) {
                             print(value);

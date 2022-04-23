@@ -202,24 +202,24 @@ class _AccountPageState extends State<AccountPage> {
                                         ],
                                       ),
                                       const SizedBox(height: 10),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Team Name',
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 16,
-                                                  color: Colors.black)),
-                                          Text(
-                                            pro!.teamName.toString(),
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 16,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 10),
+                                      // Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   children: [
+                                      //     Text('Team Name',
+                                      //         style: GoogleFonts.poppins(
+                                      //             fontSize: 16,
+                                      //             color: Colors.black)),
+                                      //     Text(
+                                      //       pro!.teamName.toString(),
+                                      //       style: GoogleFonts.poppins(
+                                      //           fontSize: 16,
+                                      //           color: Colors.black,
+                                      //           fontWeight: FontWeight.bold),
+                                      //     ),
+                                      //   ],
+                                      // ),
+                                      // const SizedBox(height: 10),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,

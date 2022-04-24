@@ -374,4 +374,31 @@ class ApiService {
       throw Exception('Failed to load data!');
     }
   }
+
+  //Post Opponent
+  Future<bool> postOpponent(
+    String id,
+    String opponent,
+  ) async {
+    String? token = await TokenService().getToken();
+
+    final response = await http.post(Uri.parse("$baseUrl/post_opponent"),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+        body: {
+          "booking_id": id,
+          "opponent_team_name": opponent
+        });
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      return true;
+    } else if (response.statusCode == 401) {
+      throw Exception('Auth Failed');
+    } else {
+      throw response.body;
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:map_launcher/map_launcher.dart';
 import 'package:sport_booking/pages/menu/booking/booking.dart';
 
 class BadmintonDetails extends StatefulWidget {
@@ -102,6 +103,29 @@ class _BadmintonDetailsState extends State<BadmintonDetails> {
                           Get.arguments[0].state.toString(),
                           style: GoogleFonts.poppins(
                               color: Colors.black, fontSize: 15),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.location_on_outlined),
+                        TextButton(
+                          onPressed: () async {
+                            final availableMaps =
+                                await MapLauncher.installedMaps;
+
+                            await availableMaps.first.showMarker(
+                              coords: Coords(
+                                  double.parse(Get.arguments[0].latitude),
+                                  double.parse(Get.arguments[0].longitude)),
+                              title: Get.arguments[0].name,
+                            );
+                          },
+                          child: Text('Open in Map',
+                              style: GoogleFonts.poppins(
+                                  color: Colors.red,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold)),
                         ),
                       ],
                     ),

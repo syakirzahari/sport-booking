@@ -42,6 +42,8 @@ dependencies:
   date_time_picker: ^2.1.0
   date_format: ^2.0.5
   stylish_bottom_bar: ^0.1.2  
+  map_launcher: ^2.2.1+2
+  another_flushbar: ^1.10.28
   
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

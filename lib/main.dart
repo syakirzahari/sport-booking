@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           brightness: Brightness.light,
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
           primaryColorLight: Colors.white,
           // primaryColorBrightness: Brightness.light,
           primaryColor: Colors.white),

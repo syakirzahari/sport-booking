@@ -79,7 +79,7 @@ class _LookingOpponentPageState extends State<LookingOpponentPage> {
             ? Center(
                 child: Text(
                 'No Booking Found',
-                style: context.theme.textTheme.bodyText1,
+                // style: context.theme.textTheme.bodyText1,
               ))
             : ListView.builder(
                 physics: const ClampingScrollPhysics(),
@@ -330,7 +330,8 @@ class _LookingOpponentPageState extends State<LookingOpponentPage> {
                                                             child: Padding(
                                                                 padding:
                                                                     const EdgeInsets
-                                                                        .all(20),
+                                                                        .all(
+                                                                        20),
                                                                 child: ListView(
                                                                   children: [
                                                                     const SizedBox(

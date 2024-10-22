@@ -139,8 +139,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               Text(
                                 state.errorText ?? '',
                                 style: TextStyle(
-                                  color: Theme.of(context).errorColor,
-                                ),
+                                    // color: Theme.of(context).errorColor,
+                                    ),
                               )
                             ],
                           );

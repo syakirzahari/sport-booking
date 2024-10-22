@@ -86,70 +86,122 @@ class NavBarPageState extends State<NavBarPage> {
       //   ),
       // ),
       bottomNavigationBar: StylishBottomBar(
+//  option: AnimatedBarOptions(
+//    iconSize: 32,
+//    barAnimation: BarAnimation.liquid,
+//    iconStyle: IconStyle.animated,
+//    opacity: 0.3,
+//  ),
+//  option: BubbleBarOptions(
+//    barStyle: BubbleBarStyle.horizotnal,
+//    // barStyle: BubbleBarStyle.vertical,
+//    bubbleFillStyle: BubbleFillStyle.fill,
+//    // bubbleFillStyle: BubbleFillStyle.outlined,
+//    opacity: 0.3,
+//  ),
+        option: DotBarOptions(
+          dotStyle: DotStyle.tile,
+          gradient: const LinearGradient(
+            colors: [
+              Colors.deepPurple,
+              Colors.pink,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         items: [
-          AnimatedBarItems(
-              icon: const Icon(
-                Icons.house_outlined,
-              ),
-              selectedIcon: const Icon(Icons.house_rounded),
-              selectedColor: Colors.red[800]!,
-              backgroundColor: Colors.amber,
-              title: const Text('Home')),
-          AnimatedBarItems(
-              icon: const Icon(
-                Icons.list,
-              ),
-              selectedIcon: const Icon(
-                Icons.list,
-              ),
-              selectedColor: Colors.red[800]!,
-              backgroundColor: Colors.amber,
-              title: const Text('Advance')),
-          AnimatedBarItems(
-              icon: const Icon(
-                Icons.style_outlined,
-              ),
-              selectedIcon: const Icon(
-                Icons.style,
-              ),
-              backgroundColor: Colors.amber,
-              selectedColor: Colors.red[800]!,
-              title: const Text('Find')),
-          AnimatedBarItems(
-              icon: const Icon(
-                Icons.calendar_today_outlined,
-              ),
-              selectedIcon: const Icon(
-                Icons.calendar_today_outlined,
-              ),
-              backgroundColor: Colors.amber,
-              selectedColor: Colors.red[800]!,
-              title: const Text('My Booking')),
-          AnimatedBarItems(
-              icon: const Icon(
-                Icons.person_outline,
-              ),
-              selectedIcon: const Icon(
-                Icons.person,
-              ),
-              backgroundColor: Colors.amber,
-              selectedColor: Colors.red[800]!,
-              title: const Text('Menu')),
+          BottomBarItem(
+            icon: const Icon(Icons.abc),
+            title: const Text('Abc'),
+            backgroundColor: Colors.red,
+            selectedIcon: const Icon(Icons.read_more),
+          ),
+          BottomBarItem(
+            icon: const Icon(Icons.safety_divider),
+            title: const Text('Safety'),
+            backgroundColor: Colors.orange,
+          ),
+          BottomBarItem(
+            icon: const Icon(Icons.cabin),
+            title: const Text('Cabin'),
+            backgroundColor: Colors.purple,
+          ),
         ],
-        iconSize: 32,
-        barAnimation: BarAnimation.fade,
-        // iconStyle: IconStyle.animated,
-
-        iconStyle: IconStyle.animated,
+        fabLocation: StylishBarFabLocation.end,
         hasNotch: true,
-        opacity: 0.3,
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {
-            _selectedIndex = index!;
+            _selectedIndex = index;
           });
         },
       ),
+      // bottomNavigationBar: StylishBottomBar(
+      //   items: [
+      //     AnimatedBarItems(
+      //         icon: const Icon(
+      //           Icons.house_outlined,
+      //         ),
+      //         selectedIcon: const Icon(Icons.house_rounded),
+      //         selectedColor: Colors.red[800]!,
+      //         backgroundColor: Colors.amber,
+      //         title: const Text('Home')),
+      //     AnimatedBarItems(
+      //         icon: const Icon(
+      //           Icons.list,
+      //         ),
+      //         selectedIcon: const Icon(
+      //           Icons.list,
+      //         ),
+      //         selectedColor: Colors.red[800]!,
+      //         backgroundColor: Colors.amber,
+      //         title: const Text('Advance')),
+      //     AnimatedBarItems(
+      //         icon: const Icon(
+      //           Icons.style_outlined,
+      //         ),
+      //         selectedIcon: const Icon(
+      //           Icons.style,
+      //         ),
+      //         backgroundColor: Colors.amber,
+      //         selectedColor: Colors.red[800]!,
+      //         title: const Text('Find')),
+      //     AnimatedBarItems(
+      //         icon: const Icon(
+      //           Icons.calendar_today_outlined,
+      //         ),
+      //         selectedIcon: const Icon(
+      //           Icons.calendar_today_outlined,
+      //         ),
+      //         backgroundColor: Colors.amber,
+      //         selectedColor: Colors.red[800]!,
+      //         title: const Text('My Booking')),
+      //     AnimatedBarItems(
+      //         icon: const Icon(
+      //           Icons.person_outline,
+      //         ),
+      //         selectedIcon: const Icon(
+      //           Icons.person,
+      //         ),
+      //         backgroundColor: Colors.amber,
+      //         selectedColor: Colors.red[800]!,
+      //         title: const Text('Menu')),
+      //   ],
+      //   iconSize: 32,
+      //   barAnimation: BarAnimation.fade,
+      //   // iconStyle: IconStyle.animated,
+
+      //   iconStyle: IconStyle.animated,
+      //   hasNotch: true,
+      //   opacity: 0.3,
+      //   currentIndex: _selectedIndex,
+      //   onTap: (index) {
+      //     setState(() {
+      //       _selectedIndex = index!;
+      //     });
+      //   },
+      // ),
     );
   }
 }

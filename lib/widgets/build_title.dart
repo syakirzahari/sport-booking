@@ -25,8 +25,8 @@ Positioned buildTitle(Size size) {
           child: const Text("Explore Now"),
           onPressed: () => Get.to(() => const ExplorePage()),
           style: ElevatedButton.styleFrom(
-            primary: Colors.red[800],
-            onPrimary: Colors.white,
+            // primary: Colors.red[800],
+            // onPrimary: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32.0),
             ),
